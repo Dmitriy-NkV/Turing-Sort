@@ -7,7 +7,7 @@
 class Tape: public ITape
 {
 public:
-  Tape(size_t size);
+  Tape(size_t size, int moveDelay, int rewindDelay, int writeDelay, int readDelay);
   ~Tape() = default;
 
   void shiftLeft() override;
@@ -23,6 +23,11 @@ public:
 private:
   std::vector< int > tape_;
   std::vector< int >::iterator iter_;
+
+  int moveDelay_;
+  int rewindDelay_;
+  int writeDelay_;
+  int readDelay_;
 };
 
 #endif
