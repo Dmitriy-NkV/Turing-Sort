@@ -40,3 +40,13 @@ int Tape::read() const
   std::this_thread::sleep_for(std::chrono::milliseconds(readDelay_));
   return *iter_;
 }
+
+bool Tape::isEnd() const
+{
+  return iter_ == tape_.end();
+}
+
+size_t Tape::size() const
+{
+  return tape_.size();
+}
