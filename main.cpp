@@ -1,4 +1,16 @@
 #include <iostream>
+#include <vector>
+
+std::vector< int > readConfig(std::istream& input)
+{
+  std::vector< int > config;
+  int delay = 0;
+  while (input >> delay)
+  {
+    config.push_back(delay);
+  }
+  return config;
+}
 
 int main(int argc, char* argv[])
 {
