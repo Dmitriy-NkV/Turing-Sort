@@ -1,7 +1,7 @@
-#ifndef TAPE_HPP
-#define TAPE_HPP
+#ifndef I_TAPE_HPP
+#define I_TAPE_HPP
 
-#include <vector>
+#include <cstddef>
 
 class ITape
 {
