@@ -4,7 +4,7 @@
 #include "i_tape.hpp"
 #include <vector>
 
-class Tape: public ITape
+class Tape: public details::ITape
 {
 public:
   Tape(size_t size, int moveDelay, int rewindDelay, int writeDelay, int readDelay);
