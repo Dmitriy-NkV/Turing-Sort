@@ -28,3 +28,15 @@ void Tape::rewind()
   std::this_thread::sleep_for(std::chrono::milliseconds(rewindDelay_));
   iter_ = tape_.begin();
 }
+
+void Tape::write(int element)
+{
+  std::this_thread::sleep_for(std::chrono::milliseconds(writeDelay_));
+  *iter_ = element;
+}
+
+int Tape::read() const
+{
+  std::this_thread::sleep_for(std::chrono::milliseconds(readDelay_));
+  return *iter_;
+}
