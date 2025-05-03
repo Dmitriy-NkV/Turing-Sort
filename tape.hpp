@@ -24,7 +24,10 @@ class Tape: public details::ITape
 {
 public:
   Tape(const std::string& fileName, const Config& config);
+  Tape(Tape&& other);
   ~Tape() = default;
+
+  Tape& operator=(Tape&& other);
 
   void shiftLeft() override;
   void shiftRight() override;

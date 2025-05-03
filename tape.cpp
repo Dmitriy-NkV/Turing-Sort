@@ -12,10 +12,33 @@ Config::Config(int moveDelay, int rewindDelay, int writeDelay, int readDelay):
 {}
 
 Tape::Tape(const std::string& fileName, const Config& config):
-  tape_(fileName, std::ios::in | std::ios::out),
+  tape_(fileName, std::ios::out | std::ios::app),
   currentPos_(0),
   config_(config)
-{}
+{
+  tape_.close();
+  tape_.open(fileName, std::ios::in | std::ios::out);
+}
+
+Tape::Tape(Tape&& other):
+  tape_(std::move(other.tape_)),
+  currentPos_(other.currentPos_),
+  config_(other.config_)
+{
+  other.currentPos_ = 0;
+}
+
+Tape& Tape::operator=(Tape&& other)
+{
+  if (&other != this)
+  {
+    tape_ = std::move(other.tape_);
+    currentPos_ = other.currentPos_;
+    config_ = other.config_;
+    other.currentPos_ = 0;
+  }
+  return *this;
+}
 
 void Tape::shiftLeft()
 {
