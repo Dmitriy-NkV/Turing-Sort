@@ -5,10 +5,25 @@
 #include <vector>
 #include <fstream>
 
+class Tape;
+
+class Config
+{
+  friend class Tape;
+public:
+  Config(int moveDelay, int rewindDelay, int writeDelay, int readDelay);
+
+private:
+  int moveDelay_;
+  int rewindDelay_;
+  int writeDelay_;
+  int readDelay_;
+};
+
 class Tape: public details::ITape
 {
 public:
-  Tape(const std::string& fileName, int moveDelay, int rewindDelay, int writeDelay, int readDelay);
+  Tape(const std::string& fileName, const Config& config);
   ~Tape() = default;
 
   void shiftLeft() override;
@@ -19,16 +34,11 @@ public:
   int read() const override;
 
   bool isEnd() const override;
-  size_t size() const override;
 
 private:
-  std::fstream tape_;
+  mutable std::fstream tape_;
   size_t currentPos_;
-
-  int moveDelay_;
-  int rewindDelay_;
-  int writeDelay_;
-  int readDelay_;
+  Config config_;
 };
 
 #endif
