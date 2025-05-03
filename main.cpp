@@ -1,15 +1,18 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
+#include "tape.hpp"
 
-std::vector< int > readConfig(std::istream& input)
+Config readConfig(const std::string& fileName)
 {
+  std::ifstream input(fileName);
   std::vector< int > config;
   int delay = 0;
   while (input >> delay)
   {
     config.push_back(delay);
   }
-  return config;
+  return Config(config[0], config[1], config[2], config[3]);
 }
 
 int main(int argc, char* argv[])
@@ -20,7 +23,8 @@ int main(int argc, char* argv[])
     return 1;
   }
 
-  std::string inputFile = argv[1];
-  std::string outputFile = argv[2];
-  std::string configFile = argv[3];
+  Config config = readConfig(argv[3]);
+
+  Tape inputTape(argv[1], config);
+  Tape outputTape(argv[2], config);
 }
