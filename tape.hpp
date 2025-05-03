@@ -3,11 +3,12 @@
 
 #include "i_tape.hpp"
 #include <vector>
+#include <fstream>
 
 class Tape: public details::ITape
 {
 public:
-  Tape(size_t size, int moveDelay, int rewindDelay, int writeDelay, int readDelay);
+  Tape(const std::string& fileName, int moveDelay, int rewindDelay, int writeDelay, int readDelay);
   ~Tape() = default;
 
   void shiftLeft() override;
@@ -21,8 +22,8 @@ public:
   size_t size() const override;
 
 private:
-  std::vector< int > tape_;
-  std::vector< int >::iterator iter_;
+  std::fstream tape_;
+  size_t currentPos_;
 
   int moveDelay_;
   int rewindDelay_;
