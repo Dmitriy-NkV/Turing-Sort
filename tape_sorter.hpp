@@ -1,8 +1,6 @@
 #ifndef TAPE_SORTER_HPP
 #define TAPE_SORTER_HPP
 
-#include <iostream>
-#include <vector>
 #include "tape.hpp"
 
 class TapeSorter
@@ -11,7 +9,7 @@ public:
   TapeSorter(const Config& config, size_t ram);
   ~TapeSorter() = default;
 
-  void operator()(Tape& inputTape, Tape& outputTape, const Config& config) const;
+  void operator()(Tape& inputTape, Tape& outputTape) const;
 
 private:
   Config config_;
