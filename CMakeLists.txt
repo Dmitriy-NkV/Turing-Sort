@@ -23,10 +23,23 @@ set(COMMON_SOURCES
   src/functions.hpp
 )
 
-add_executable(TuringSort ${COMMON_SOURCES} main.cpp)
+add_executable(TuringSort
+  ${COMMON_SOURCES}
+  main.cpp
+)
 
-add_executable(Tests ${COMMON_SOURCES} tests/test_main.cpp tests/test_tape.cpp tests/test_sorter.cpp)
-target_link_libraries(Tests PRIVATE gtest gmock pthread)
+add_executable(Tests
+  ${COMMON_SOURCES}
+  tests/test_main.cpp
+  tests/test_tape.cpp
+  tests/test_sorter.cpp
+)
+target_link_libraries(Tests
+  PRIVATE
+  gtest
+  gmock
+  pthread
+)
 
 enable_testing()
 add_test(NAME Tests COMMAND Tests)
