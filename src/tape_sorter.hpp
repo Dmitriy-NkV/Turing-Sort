@@ -1,6 +1,7 @@
 #ifndef TAPE_SORTER_HPP
 #define TAPE_SORTER_HPP
 
+#include <vector>
 #include "tape.hpp"
 
 class TapeSorter
