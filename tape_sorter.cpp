@@ -2,8 +2,6 @@
 #include <algorithm>
 #include "tape.hpp"
 
-#include <iostream>
-
 TapeSorter::TapeSorter(const Config& config, size_t ram):
   config_(config),
   ram_(ram)
@@ -32,5 +30,26 @@ void TapeSorter::operator()(Tape& inputTape, Tape& outputTape) const
       tempTape.write(*i);
       tempTape.shiftRight();
     }
+    tempTape.rewind();
+  }
+
+  bool isEmpty = false;
+  while (!isEmpty)
+  {
+    isEmpty = true;
+    int minNum = std::numeric_limits< int >::max();
+    size_t minIndex = 0;
+    for (size_t i = 0; i != tempTapes.size(); ++i)
+    {
+      if (!tempTapes[i].isEnd() && tempTapes[i].read() < minNum)
+      {
+        minNum = tempTapes[i].read();
+        minIndex = i;
+        isEmpty = false;
+      }
+    }
+    tempTapes[minIndex].shiftRight();
+    outputTape.write(minNum);
+    outputTape.shiftRight();
   }
 }
