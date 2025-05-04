@@ -20,7 +20,7 @@ void TapeSorter::operator()(Tape& inputTape, Tape& outputTape) const
     std::sort(data.begin(), data.end());
 
     size_t currentTapeNum = tempTapes.size();
-    std::string fileName = "temp" + std::to_string(currentTapeNum) + ".txt";
+    std::string fileName = "../tmp/temp" + std::to_string(currentTapeNum) + ".txt";
     tempTapes.emplace_back(fileName, config_);
 
     Tape& tempTape = tempTapes[currentTapeNum];

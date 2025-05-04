@@ -1,7 +1,7 @@
 #include <iostream>
 #include <filesystem>
-#include "tape.hpp"
-#include "tape_sorter.hpp"
+#include "src/tape.hpp"
+#include "src/tape_sorter.hpp"
 
 int main(int argc, char* argv[])
 {
