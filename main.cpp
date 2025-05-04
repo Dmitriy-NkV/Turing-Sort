@@ -6,7 +6,8 @@
 
 int main(int argc, char* argv[])
 {
-  if (argc != 4)
+  size_t ramSize = 50;
+  if (argc != 4 && argc != 5)
   {
     std::cerr << "Error: Wrong arguments" << '\n';
     return 1;
@@ -19,6 +20,19 @@ int main(int argc, char* argv[])
   else if (!std::filesystem::exists(argv[3]))
   {
     std::cerr << "Error: Incorrect config file" << '\n';
+    return 1;
+  }
+  else if (argc == 5)
+  {
+    try
+    {
+      ramSize = std::stoull(argv[4]);
+    }
+    catch (const std::exception& e)
+    {
+      std::cerr << "Error: Wrong ram parameter";
+      return 1;
+    }
   }
 
   try
@@ -29,7 +43,7 @@ int main(int argc, char* argv[])
 
     clearDirectory("tmp/");
 
-    TapeSorter sorter(config, 20);
+    TapeSorter sorter(config, ramSize);
     sorter(inputTape, outputTape);
   }
   catch (const std::exception& e)
