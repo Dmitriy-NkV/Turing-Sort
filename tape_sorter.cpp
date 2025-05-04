@@ -1,6 +1,5 @@
 #include "tape_sorter.hpp"
 #include <algorithm>
-#include "tape.hpp"
 
 TapeSorter::TapeSorter(const Config& config, size_t ram):
   config_(config),

@@ -2,7 +2,6 @@
 #define TAPE_HPP
 
 #include "i_tape.hpp"
-#include <vector>
 #include <fstream>
 
 class Tape;

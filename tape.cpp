@@ -1,8 +1,8 @@
 #include "tape.hpp"
+#include <vector>
 #include <thread>
 #include <chrono>
 #include <iomanip>
-#include <iostream>
 
 Config::Config(int moveDelay, int rewindDelay, int writeDelay, int readDelay):
   moveDelay_(moveDelay),
