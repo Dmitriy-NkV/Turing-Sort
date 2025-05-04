@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include "tape.hpp"
+#include "tape_sorter.hpp"
 
 Config readConfig(const std::string& fileName)
 {
@@ -27,4 +28,7 @@ int main(int argc, char* argv[])
 
   Tape inputTape(argv[1], config);
   Tape outputTape(argv[2], config);
+
+  TapeSorter sorter(config, 20);
+  sorter(inputTape, outputTape);
 }
