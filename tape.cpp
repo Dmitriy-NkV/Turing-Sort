@@ -63,11 +63,11 @@ void Tape::write(int element)
 {
   tape_.seekg(currentPos_);
   std::this_thread::sleep_for(std::chrono::milliseconds(config_.writeDelay_));
-  tape_ << std::hex << std::setfill('0') 
-    << std::setw(2) << (element & 0xFF) << " "
-    << std::setw(2) << ((element >> 8) & 0xFF) << " "
-    << std::setw(2) << ((element >> 16) & 0xFF) << " "
-    << std::setw(2) << ((element >> 24) & 0xFF) << "\n";
+  tape_ << std::hex << std::setfill('0')
+    << std::setw(2) << (element & 0xFF) << ' '
+    << std::setw(2) << ((element >> 8) & 0xFF) << ' '
+    << std::setw(2) << ((element >> 16) & 0xFF) << ' '
+    << std::setw(2) << ((element >> 24) & 0xFF) << '\n';
 }
 
 int Tape::read() const
@@ -85,5 +85,6 @@ int Tape::read() const
 
 bool Tape::isEnd() const
 {
-  return tape_.eof();
+  tape_.seekg(currentPos_);
+  return tape_.peek() == std::ifstream::traits_type::eof();
 }
