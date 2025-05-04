@@ -20,6 +20,8 @@ private:
   int readDelay_;
 };
 
+Config readConfig(const std::string& fileName);
+
 class Tape: public details::ITape
 {
 public:
