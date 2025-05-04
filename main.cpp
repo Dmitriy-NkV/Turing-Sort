@@ -1,15 +1,8 @@
 #include <iostream>
 #include <filesystem>
 #include "src/tape.hpp"
+#include "src/functions.hpp"
 #include "src/tape_sorter.hpp"
-
-void clearDirectory(const std::string& path)
-{
-  for (const auto& entry: std::filesystem::directory_iterator(path))
-  {
-    std::filesystem::remove_all(entry.path());
-  }
-}
 
 int main(int argc, char* argv[])
 {

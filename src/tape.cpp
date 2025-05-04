@@ -11,24 +11,6 @@ Config::Config(int moveDelay, int rewindDelay, int writeDelay, int readDelay):
   readDelay_(readDelay)
 {}
 
-Config readConfig(const std::string& fileName)
-{
-  std::ifstream input(fileName);
-  std::vector< int > config;
-
-  int delay = 0;
-  while (input >> delay)
-  {
-    config.push_back(delay);
-  }
-  if (config.size() != 4)
-  {
-    throw std::logic_error("Error: Incorrect config parameters");
-  }
-
-  return Config(config[0], config[1], config[2], config[3]);
-}
-
 Tape::Tape(const std::string& fileName, const Config& config, bool rewrite):
   tape_(fileName, std::ios::out | (rewrite ? std::ios::trunc : std::ios::app)),
   currentPos_(0),
