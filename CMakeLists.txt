@@ -19,6 +19,8 @@ set(COMMON_SOURCES
   src/i_tape.hpp
   src/tape_sorter.cpp
   src/tape_sorter.hpp
+  src/functions.cpp
+  src/functions.hpp
 )
 
 add_executable(TuringSort ${COMMON_SOURCES} main.cpp)
