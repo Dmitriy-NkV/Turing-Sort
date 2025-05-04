@@ -35,18 +35,9 @@ void TapeSorter::operator()(Tape& inputTape, Tape& outputTape) const
   bool isEmpty = false;
   while (!isEmpty)
   {
-    isEmpty = true;
     int minNum = std::numeric_limits< int >::max();
     size_t minIndex = 0;
-    for (size_t i = 0; i != tempTapes.size(); ++i)
-    {
-      if (!tempTapes[i].isEnd() && tempTapes[i].read() < minNum)
-      {
-        minNum = tempTapes[i].read();
-        minIndex = i;
-        isEmpty = false;
-      }
-    }
+    isEmpty = findMin(tempTapes, minNum, minIndex);
 
     if (!isEmpty)
     {
@@ -55,4 +46,19 @@ void TapeSorter::operator()(Tape& inputTape, Tape& outputTape) const
       outputTape.shiftRight();
     }
   }
+}
+
+bool TapeSorter::findMin(const std::vector< Tape >& tempTapes, int& minNum, size_t& minIndex) const
+{
+  bool isEmpty = true;
+  for (size_t i = 0; i != tempTapes.size(); ++i)
+  {
+    if (!tempTapes[i].isEnd() && tempTapes[i].read() < minNum)
+    {
+      minNum = tempTapes[i].read();
+      minIndex = i;
+      isEmpty = false;
+    }
+  }
+  return isEmpty;
 }

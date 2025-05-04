@@ -12,6 +12,7 @@ public:
   void operator()(Tape& inputTape, Tape& outputTape) const;
 
 private:
+  bool findMin(const std::vector< Tape >& tempTapes, int& minNum, size_t& minIndex) const;
   Config config_;
   size_t ram_;
 };
