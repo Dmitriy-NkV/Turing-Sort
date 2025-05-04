@@ -29,8 +29,8 @@ Config readConfig(const std::string& fileName)
   return Config(config[0], config[1], config[2], config[3]);
 }
 
-Tape::Tape(const std::string& fileName, const Config& config):
-  tape_(fileName, std::ios::out | std::ios::app),
+Tape::Tape(const std::string& fileName, const Config& config, bool rewrite):
+  tape_(fileName, std::ios::out | (rewrite ? std::ios::trunc : std::ios::app)),
   currentPos_(0),
   config_(config)
 {

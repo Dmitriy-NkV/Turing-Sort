@@ -24,7 +24,7 @@ Config readConfig(const std::string& fileName);
 class Tape: public details::ITape
 {
 public:
-  Tape(const std::string& fileName, const Config& config);
+  Tape(const std::string& fileName, const Config& config, bool rewrite = false);
   Tape(Tape&& other);
   ~Tape() = default;
 
