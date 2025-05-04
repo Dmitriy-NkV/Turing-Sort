@@ -3,6 +3,14 @@
 #include "src/tape.hpp"
 #include "src/tape_sorter.hpp"
 
+void clearDirectory(const std::string& path)
+{
+  for (const auto& entry: std::filesystem::directory_iterator(path))
+  {
+    std::filesystem::remove_all(entry.path());
+  }
+}
+
 int main(int argc, char* argv[])
 {
   if (argc != 4)
@@ -24,7 +32,9 @@ int main(int argc, char* argv[])
   {
     Config config = readConfig(argv[3]);
     Tape inputTape(argv[1], config);
-    Tape outputTape(argv[2], config);
+    Tape outputTape(argv[2], config, true);
+
+    clearDirectory("tmp/");
 
     TapeSorter sorter(config, 20);
     sorter(inputTape, outputTape);
