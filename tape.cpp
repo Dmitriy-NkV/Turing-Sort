@@ -42,6 +42,11 @@ Tape& Tape::operator=(Tape&& other)
 
 void Tape::shiftLeft()
 {
+  if (currentPos_ == 0)
+  {
+    throw std::out_of_range("Error: Out of range");
+  }
+
   std::this_thread::sleep_for(std::chrono::milliseconds(config_.moveDelay_));
   currentPos_ -= 12;
 }
@@ -72,6 +77,11 @@ void Tape::write(int element)
 
 int Tape::read() const
 {
+  if (isEnd())
+  {
+    throw std::out_of_range("Error: Reading out of range");
+  }
+
   tape_.seekg(currentPos_);
   std::this_thread::sleep_for(std::chrono::milliseconds(config_.readDelay_));
   int byte0 = 0;
