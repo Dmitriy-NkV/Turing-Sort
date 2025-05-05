@@ -9,6 +9,8 @@ TapeSorter::TapeSorter(const Config& config, size_t ram):
 void TapeSorter::operator()(Tape& inputTape, Tape& outputTape) const
 {
   std::vector< Tape > tempTapes;
+
+  inputTape.rewind();
   while (!inputTape.isEnd())
   {
     std::vector< int > data;
@@ -46,6 +48,7 @@ void TapeSorter::operator()(Tape& inputTape, Tape& outputTape) const
       outputTape.shiftRight();
     }
   }
+  outputTape.rewind();
 }
 
 bool TapeSorter::findMin(const std::vector< Tape >& tempTapes, int& minNum, size_t& minIndex) const
@@ -53,7 +56,7 @@ bool TapeSorter::findMin(const std::vector< Tape >& tempTapes, int& minNum, size
   bool isEmpty = true;
   for (size_t i = 0; i != tempTapes.size(); ++i)
   {
-    if (!tempTapes[i].isEnd() && tempTapes[i].read() < minNum)
+    if (!tempTapes[i].isEnd() && tempTapes[i].read() <= minNum)
     {
       minNum = tempTapes[i].read();
       minIndex = i;
