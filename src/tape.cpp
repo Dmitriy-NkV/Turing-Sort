@@ -68,7 +68,7 @@ void Tape::write(int element)
 {
   tape_.seekg(currentPos_);
   std::this_thread::sleep_for(std::chrono::milliseconds(config_.writeDelay_));
-  tape_ << std::hex << std::setfill('0')
+  tape_ << std::hex << std::uppercase << std::setfill('0')
     << std::setw(2) << (element & 0xFF) << ' '
     << std::setw(2) << ((element >> 8) & 0xFF) << ' '
     << std::setw(2) << ((element >> 16) & 0xFF) << ' '
