@@ -30,18 +30,17 @@ int main(int argc, char* argv[])
     }
     catch (const std::exception& e)
     {
-      std::cerr << "Error: Wrong ram parameter";
+      std::cerr << "Error: Wrong ram parameter" << '\n';
       return 1;
     }
   }
 
   try
   {
+    clearDirectory("tmp");
     Config config = readConfig(argv[3]);
     Tape inputTape(argv[1], config);
     Tape outputTape(argv[2], config, true);
-
-    clearDirectory("tmp/");
 
     TapeSorter sorter(config, ramSize);
     sorter(inputTape, outputTape);
