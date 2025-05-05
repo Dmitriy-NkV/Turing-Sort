@@ -41,6 +41,7 @@ private:
   mutable std::fstream tape_;
   size_t currentPos_;
   Config config_;
+  static constexpr size_t RECORD_SIZE = 12;
 };
 
 #endif

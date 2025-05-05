@@ -18,6 +18,10 @@ Tape::Tape(const std::string& fileName, const Config& config, bool rewrite):
 {
   tape_.close();
   tape_.open(fileName, std::ios::in | std::ios::out);
+  if (!tape_.is_open())
+  {
+    throw std::runtime_error("Error: Failed to open tape file");
+  }
 }
 
 Tape::Tape(Tape&& other):
@@ -48,13 +52,13 @@ void Tape::shiftLeft()
   }
 
   std::this_thread::sleep_for(std::chrono::milliseconds(config_.moveDelay_));
-  currentPos_ -= 12;
+  currentPos_ -= RECORD_SIZE;
 }
 
 void Tape::shiftRight()
 {
   std::this_thread::sleep_for(std::chrono::milliseconds(config_.moveDelay_));
-  currentPos_ += 12;
+  currentPos_ += RECORD_SIZE;
 }
 
 void Tape::rewind()
